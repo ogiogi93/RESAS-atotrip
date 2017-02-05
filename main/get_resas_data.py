@@ -52,6 +52,7 @@ class GetResas(object):
         :param city_name:
         :return:
         """
+
         parameter = {
             'prefCode': pref_code,
             'cityCode': city_code
@@ -65,9 +66,9 @@ class GetResas(object):
             population_list.append(temp)
 
         # DataFrameに格納する
-        df_population = pd.DataFrame(population_list, columns=['pref_name', 'city_name','year', 'value'])
+        return pd.DataFrame(population_list, columns=['pref_name', 'city_name','year', 'value'])
 
-        return df_population.to_json(orient='records')
+        #return df_population.to_json(orient='records')
 
     def get_local_event(self, city_code, num=None):
         """

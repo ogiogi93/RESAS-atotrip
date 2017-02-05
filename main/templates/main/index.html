@@ -29,8 +29,8 @@
     <div class="intro-header">
         <div class="col-xs-12 text-center abcen1">
             <h1 class="h1_home wow fadeIn" data-wow-delay="0.4s">跡取りっぷ</h1>
-            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">地域の良い面、悪い面の両方を可視化<br>跡取りに関する情報を提供します</h3>
-            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">大切な文化・お店をあなたが守りませんか？</h3>
+            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">跡取りを探している人と地方で輝きたい人を旅でつなぐサイト<br>
+                魅力を伝えるお手伝いをする</h3>
             <ul class="list-inline intro-social-buttons">
                 <li id="download"><a href="#whatis"
                                      class="btn  btn-lg mybutton_standard wow swing wow fadeIn"
@@ -57,15 +57,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4 wow fadeInDown text-center">
-                    <h4> 長野県長野市 </h4>
-                    <img src="/static/img/job_pic1.jpg" alt="image" width="320" height="200">
-                    <h3>飲食店で、街を変える。</h3>
-                    <p class="lead">「寂し過ぎる地元」を盛り上げたい。地域創生は「食」から始まる。</p>
-                    <p><a href="{% url 'detail_page' %}?pref_code=20&pref_name=長野県&city_name=長野市&city_code=20201"
-                          class="btn btn-embossed btn-primary view"
-                          role="button">View Details</a></p>
-                </div>
+                {% for content in contents %}
+                    <div class="col-sm-4 wow fadeInDown text-center">
+                        <h4> {{ content.pref_name }} {{ content.city_name }}</h4>
+                        <img src="{{ content.main_picture }}" alt="image" width="320" height="200">
+                        <h3>{{ content.main_title }}</h3>
+                        <p>
+                            <a href="{% url 'detail_page' %}?pref_code={{ content.pref_code }}&pref_name={{ content.pref_name }}&city_name={{ content.city_name }}&city_code={{ content.city_code }}&id={{ content.id }}"
+                               class="btn btn-embossed btn-primary view"
+                               role="button">View Details</a></p>
+                    </div>
+                {% endfor %}
                 <div class="col-sm-4 wow fadeInDown text-center">
                     <h4> 岡山県岡山市 </h4>
                     <img src="/static/img/job_pic2.jpg" alt="image" width="320" height="200">

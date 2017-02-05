@@ -73,13 +73,24 @@
     <!-- Visualize -->
     <div id="visualize" class="content-section-a" style="border-top: 0">
         <div class="container">
-            <div class="col-md-6 col-md-offset-3 text-center wrap_title">
-                <h2>{{ pref_name }} {{ city_name }}</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>{{ content.pref_name }} {{ content.city_name }}</h2>
+                    <p>{{ content.city_text }}</p>
+                </div>
+                <div class="col-md-4">
+                    <br>
+                    <img src="{{ content.location_picture }}" width="250" , height="200">
+                </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <h4>人口増減率</h4>
                     <div id="population_timeseries"></div>
+                </div>
+                <div class="col-md-6">
+                    <h4>都道府県別平均給料</h4>
+                    <div id="sarary_barchart"></div>
                 </div>
             </div>
         </div>
@@ -94,22 +105,18 @@
             </div>
             <div class="row">
                 <div class="col-sm-4 wow fadeInDown text-center">
-                    <img class="img-responsive " src="/static/img/job1.jpg" alt="">
-                    <h3>ポイント1</h3>
-                    <p class="lead"> 特徴--</p>
-
+                    <img class="img-responsive " src="{{ content.point_picture1 }}" alt="">
+                    <h3>{{ content.point_title1 }}</h3>
                 </div><!-- /.col-lg-4 -->
 
                 <div class="col-sm-4 wow fadeInDown text-center">
-                    <img class="img-responsive " src="/static/img/job_pic2.jpg" alt="">
-                    <h3>ポイント2</h3>
-                    <p class="lead"> 特徴--</p>
+                    <img class="img-responsive " src="{{ content.point_picture2 }}" alt="">
+                    <h3>{{ content.point_title2 }}</h3>
                 </div><!-- /.col-lg-4 -->
 
                 <div class="col-sm-4 wow fadeInDown text-center">
-                    <img class="img-responsive " src="#" alt="">
-                    <h3>ポイント3</h3>
-                    <p class="lead"> 特徴--</p>
+                    <img class="img-responsive " src="{{ content.point_picture3 }}" alt="">
+                    <h3>{{ content.point_title3 }}</h3>
                 </div><!-- /.col-lg-4 -->
             </div>
         </div>
@@ -172,15 +179,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 pull-right wow fadeInRightBig">
-                    <img class="img-responsive " src="/static/img/job1.jpg" alt="">
+                    <br>
+                    <img class="img-responsive " src="{{ content.kyu_picture }}" alt="">
                 </div>
                 <div class="col-sm-6 wow fadeInLeftBig" data-animation-delay="200">
-                    <h3 class="section-heading">求人情報</h3>
+                    <h3 class="section-heading">募集要項</h3>
                     <ul class="descp lead2">
-                        <li>募集する職種: 飲食店責任者</li>
-                        <li>採用形態: 正社員</li>
-                        <li>仕事内容: ホール業務・キッチン業務</li>
-                        <li>勤務: 長崎</li>
+                        <li>求人者: {{ content.kyu_syoku }} </li>
+                        <li>仕事内容: {{ content.kyu_work }}</li>
+                        <li>PR:<br> {{ content.kyu_pr }}</li>
                     </ul>
                 </div>
             </div>
@@ -199,29 +206,29 @@
             <div class="row wow bounceInUp">
                 <div id="owl-demo" class="owl-carousel">
 
-                    <a href="img/slide/1.png" class="image-link">
+                    <a href="{{ content.picture1 }}" class="image-link">
                         <div class="item">
-                            <img class="img-responsive img-rounded img-list" src="/static/img/slide/1.jpg"
+                            <img class="img-responsive img-rounded img-list" src="{{ content.picture1 }}"
                                  alt="Owl Image" width="300" height="280">
                         </div>
                     </a>
 
-                    <a href="img/slide/2.png" class="image-link">
+                    <a href="{{ content.picture2 }}" class="image-link">
                         <div class="item">
-                            <img class="img-responsive img-rounded img-list" src="/static/img/slide/2.jpg"
+                            <img class="img-responsive img-rounded img-list" src="{{ content.picture2 }}"
                                  alt="Owl Image" width="300" height="280">
                         </div>
                     </a>
 
-                    <a href="img/slide/3.png" class="image-link">
+                    <a href="{{ content.picture3 }}" class="image-link">
                         <div class="item">
-                            <img class="img-responsive img-rounded img-list" src="/static/img/slide/3.jpg"
+                            <img class="img-responsive img-rounded img-list" src="{{ content.picture3 }}"
                                  alt="Owl Image" width="300" height="280">
                         </div>
                     </a>
-                    <a href="img/slide/3.png" class="image-link">
+                    <a href="{{ content.picture4 }}" class="image-link">
                         <div class="item">
-                            <img class="img-responsive img-rounded img-list" src="/static/img/slide/1.jpg"
+                            <img class="img-responsive img-rounded img-list" src="{{ content.picture4 }}"
                                  alt="Owl Image" width="300" height="280">
                         </div>
                     </a>
@@ -296,35 +303,77 @@
             population
                     .width(500)
                     .height(150)
-                    .elasticX(true)
-                    .renderArea(false)
-                    .brushOn(false)
-                    .renderDataPoints(true)
+                    .chart(function (c) {
+                        return dc.lineChart(c).interpolate('basis');
+                    })
                     .margins({top: 30, right: 50, bottom: 25, left: 70})
-                    .x(d3.scale.linear().domain([2000, 2014]))
-                    .dimension(dimYear)
-                    .group(grpYear);
+                    .x(d3.scale.linear().domain([2000, 2040]))
+                    .dimension(dimPrefYear)
+                    .group(grpPrefYear)
+                    .legend(dc.legend().x(350).y(10).itemHeight(13).gap(5).horizontal(1).legendWidth(140).itemWidth(70))
+                    .seriesAccessor(function (d) {
+                        return d.key[0];
+                    })
+                    .keyAccessor(function (d) {
+                        return d.key[1];
+                    })
+                    .valueAccessor(function (d) {
+                        return d.value;
+                    });
+            sarary
+                    .width(500)
+                    .height(150)
+                    .dimension(dimPref)
+                    .margins({left: 80, top: 20, right: 10, bottom: 70})
+                    .group(grpPref)
+                    .valueAccessor(function (p) {
+                        return p.value.count > 0 ? p.value.total / p.value.count : 0;
+                    })
+                    .x(d3.scale.ordinal())
+                    .xUnits(dc.units.ordinal)
+
 
             console.log('Rendering');
             dc.renderAll();
         }
         var ndx;
-        var population = dc.lineChart("#population_timeseries");
+        var population = dc.seriesChart("#population_timeseries");
+        var sarary = dc.barChart("#sarary_barchart")
 
         /* Get data */
-        var data = {{ population|safe }};
+        var data = {{ result|safe }};
         console.log(data);
         ndx = crossfilter(data);
 
         /* Set dimension */
-        var dimYear = ndx.dimension(function (d) {
-            return d.year;
+        var dimPrefYear = ndx.dimension(function (d) {
+            return [d.pref_name, d.year];
+        });
+        var dimPref = ndx.dimension(function (d) {
+            return d.pref_name;
         });
 
         /* Set group */
-        var grpYear = dimYear.group().reduceSum(function (d) {
+        var grpPrefYear = dimPrefYear.group().reduceSum(function (d) {
             return d.value;
         });
+        var grpPref = dimPref.group().reduce(reduceAdd, reduceRemove, reduceInitial);
+
+        function reduceAdd(p, v) {
+            ++p.count;
+            p.total += v.sarary;
+            return p;
+        }
+
+        function reduceRemove(p, v) {
+            --p.count;
+            p.total -= v.sarary;
+            return p;
+        }
+
+        function reduceInitial() {
+            return {count: 0, total: 0};
+        }
 
         render_plots();
 

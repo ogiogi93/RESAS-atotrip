@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}RESAS{% endblock title %}
+{% block extrahead %}
+{% endblock %}
+{% block content %}
+    <!-- NavBar-->
+    <nav class="navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#home">跡取りっぷ</a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="menuItem"><a href="{% url 'top_page' %}">Top Page</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <!-- FullScreen -->
+    <div class="intro-header">
+        <div class="col-xs-12 text-center abcen1">
+            <h1 class="h1_home wow fadeIn" data-wow-delay="0.4s">跡取りっぷ</h1>
+            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">地域の良い面、悪い面の両方を可視化<br>跡取りに関する情報を提供します</h3>
+            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">大切な文化・お店をあなたが守りませんか？</h3>
+            <ul class="list-inline intro-social-buttons">
+                <li id="download"><a href="#whatis"
+                                     class="btn  btn-lg mybutton_standard wow swing wow fadeIn"
+                                     data-wow-delay="1.2s"><span
+                        class="network-name">詳細を見てみる</span></a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.container -->
+        <div class="col-xs-12 text-center abcen wow fadeIn">
+            <div class="button_down ">
+                <a class="imgcircle wow bounceInUp" data-wow-duration="1.5s" href="#whatis"> <img class="img_scroll"
+                                                                                                  src="/static/img/icon/circle.png"
+                                                                                                  alt=""> </a>
+            </div>
+        </div>
+    </div>
+    <div id="whatis" class="content-section-b" style="border-top: 0">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                    <h3>新しい生活を探してみる</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <h4> 長野県長野市 </h4>
+                    <img src="/static/img/job_pic1.jpg" alt="image" width="320" height="200">
+                    <h3>飲食店で、街を変える。</h3>
+                    <p class="lead">「寂し過ぎる地元」を盛り上げたい。地域創生は「食」から始まる。</p>
+                    <p><a href="{% url 'detail_page' %}?pref_code=20&pref_name=長野県&city_name=長野市&city_code=20201"
+                          class="btn btn-embossed btn-primary view"
+                          role="button">View Details</a></p>
+                </div>
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <h4> 岡山県岡山市 </h4>
+                    <img src="/static/img/job_pic2.jpg" alt="image" width="320" height="200">
+                    <h3> 左官職人</h3>
+                    <p class="lead"> 真摯な手仕事でお客様のイメージを形にしていく、左官職人。</p>
+                    <p><a href="{% url 'detail_page' %}?pref_code=33&pref_name=岡山県&city_name=岡山市&city_code=33100"
+                          class="btn btn-embossed btn-primary view"
+                          role="button">View Details</a></p>
+                </div>
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <h4> 山口県盛岡市 </h4>
+                    <img src="/static/img/job_pic3.jpg" alt="image" width="320" height="200">
+                    <h3>盆栽職人になる！</h3>
+                    <p class="lead">苔玉盆栽で癒しを！盆栽職人が教える季節の楽しみ方</p>
+                    <p><a href="{% url 'detail_page' %}?pref_code=35&pref_name=山口県&city_name=盛岡市&city_code=03201"
+                          class="btn btn-embossed btn-primary view"
+                          role="button">View Details</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}RESAS{% endblock title %}
+{% block extrahead %}
+    <style>
+        .img-list {
+            width: 320px !important;
+            height: 280px !important;
+
+        }
+
+        .content-section-a {
+            background: #FAFAFA;
+        }
+
+        .content-section-c {
+            background: darkslateblue;
+        }
+
+        #movie-frame {
+            width: 560px;
+            height: 400px;
+            margin: 0px auto;
+            overflow: hidden;
+        }
+
+        #scale {
+            transform: scale(0.68);
+        }
+
+        table tr td a {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+
+        table tr td {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <!-- NavBar-->
+    <nav class="navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#home">跡取りっぷ</a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="menuItem"><a href="{% url 'top_page' %}">Top Page</a></li>
+                    <li class="menuItem"><a href="#visualize">Visualize</a></li>
+                    <li class="menuItem"><a href="#culture">Culture</a></li>
+                    <li class="menuItem"><a href="#movie">Movie</a></li>
+                    <li class="menuItem"><a href="#event">Event</a></li>
+                    <li class="menuItem"><a href="#job">Job</a></li>
+                    <li class="menuItem"><a href="#subsidy">Subsidy</a></li>
+                    <li class="menuItem"><a href="#scene">Scene</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Visualize -->
+    <div id="visualize" class="content-section-a" style="border-top: 0">
+        <div class="container">
+            <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                <h2>{{ pref_name }} {{ city_name }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>人口増減率</h4>
+                    <div id="population_timeseries"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- culture -->
+    <div id="culture" class="content-section-b" style="border-top: 0">
+        <div class="container">
+
+            <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                <h3>文化・職業の魅力ポイント</h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <img class="img-responsive " src="/static/img/job1.jpg" alt="">
+                    <h3>ポイント1</h3>
+                    <p class="lead"> 特徴--</p>
+
+                </div><!-- /.col-lg-4 -->
+
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <img class="img-responsive " src="/static/img/job_pic2.jpg" alt="">
+                    <h3>ポイント2</h3>
+                    <p class="lead"> 特徴--</p>
+                </div><!-- /.col-lg-4 -->
+
+                <div class="col-sm-4 wow fadeInDown text-center">
+                    <img class="img-responsive " src="#" alt="">
+                    <h3>ポイント3</h3>
+                    <p class="lead"> 特徴--</p>
+                </div><!-- /.col-lg-4 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- movie -->
+    <div id="movie" class="content-section-a">
+        <div class="container">
+            <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                <h3>地域・職を知ろう(NHK動画)</h3>
+            </div>
+            <div class="row">
+                {% for nhk_movie in nhk_movies %}
+                    <div class="col-sm-4 wow fadeInRightBig">
+                        <div id="scale">
+                            <div id="movie-frame">
+                                <iframe src="{{ nhk_movie.url }}"
+                                        style="width: 1200px;height: 1200px; margin-left:-80px;margin-top:-300px;"></iframe>
+                            </div>
+                            <a href="{{ nhk_movie.url }}"><h3>{{ nhk_movie.title }}</h3></a><br>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- event -->
+    <div id='event' class="content-section-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 wow fadeInLeftBig">
+                    <div id="owl-demo-1" class="owl-carousel">
+                        {% for local_event in local_events %}
+                            <a href="{{ local_event.thumb_image }}" class="image-link">
+                                <div class="item">
+                                    <img class="img-responsive img-rounded" src="{{ local_event.thumb_image }}"
+                                         alt="">
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-sm-6 wow fadeInRightBig" data-animation-delay="200">
+                    <h3 class="section-heading">イベントギャラリー　</h3>
+                    <div class="sub-title lead3">近頃{{ local_event_count }}回のローカルイベントが開催され、<br> コミュニティが非常に活発</div>
+                    <p class="lead">
+                        {% for local_event in local_events %}
+                            <a href="{{ local_event.info_homepage }}">・{{ local_event.event_title }}</a><br>
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- job -->
+    <div id="job" class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 pull-right wow fadeInRightBig">
+                    <img class="img-responsive " src="/static/img/job1.jpg" alt="">
+                </div>
+                <div class="col-sm-6 wow fadeInLeftBig" data-animation-delay="200">
+                    <h3 class="section-heading">求人情報</h3>
+                    <ul class="descp lead2">
+                        <li>募集する職種: 飲食店責任者</li>
+                        <li>採用形態: 正社員</li>
+                        <li>仕事内容: ホール業務・キッチン業務</li>
+                        <li>勤務: 長崎</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scene -->
+    <div id="scene" class="content-section-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center wrap_title ">
+                    <h3>写真リスト</h3>
+                    <p class="lead" style="margin-top:0">職業の画像など魅力の伝わる画像をはる</p>
+                </div>
+            </div>
+            <div class="row wow bounceInUp">
+                <div id="owl-demo" class="owl-carousel">
+
+                    <a href="img/slide/1.png" class="image-link">
+                        <div class="item">
+                            <img class="img-responsive img-rounded img-list" src="/static/img/slide/1.jpg"
+                                 alt="Owl Image" width="300" height="280">
+                        </div>
+                    </a>
+
+                    <a href="img/slide/2.png" class="image-link">
+                        <div class="item">
+                            <img class="img-responsive img-rounded img-list" src="/static/img/slide/2.jpg"
+                                 alt="Owl Image" width="300" height="280">
+                        </div>
+                    </a>
+
+                    <a href="img/slide/3.png" class="image-link">
+                        <div class="item">
+                            <img class="img-responsive img-rounded img-list" src="/static/img/slide/3.jpg"
+                                 alt="Owl Image" width="300" height="280">
+                        </div>
+                    </a>
+                    <a href="img/slide/3.png" class="image-link">
+                        <div class="item">
+                            <img class="img-responsive img-rounded img-list" src="/static/img/slide/1.jpg"
+                                 alt="Owl Image" width="300" height="280">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- subsidy -->
+    <div id="subsidy" class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 wow fadeInLeftBig" data-animation-delay="200">
+                    <h3 class="section-heading">補助金情報</h3>
+                    <table class='table table-hover dc-data-table' id='dc-detail-table'>
+                        <thead>
+                        <tr class='header'>
+                            <th>補助金</th>
+                            <th>概要</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for subsidy in subisdies %}
+                            <tr>
+                                <td><a href="{{ subsidy.url }}" style="text-decoration:none;">{{ subsidy.subsidy }}</a>
+                                </td>
+                                <td><a href="{{ subsidy.url }}" style="text-decoration:none;">{{ subsidy.content }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-c">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center white">
+                    <h3>応募する</h3>
+                    <p class="lead" style="margin-top:0">実際に訪問してみましょう</p>
+                </div>
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <div class="mockup-content">
+                        <div class="morph-button wow pulse morph-button-inflow morph-button-inflow-1">
+                            <button type="button"><span>応募する</span></button>
+                            <div class="morph-content">
+                                <div>
+                                    <div class="content-style-form content-style-form-4 ">
+                                        <h2 class="morph-clone">応募する</h2>
+                                        <form>
+                                            <p><label>レジュメをアップロードする</label><input type="file"/></p>
+                                            <p>
+                                                <button>応募する</button>
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v3.js"></script>
+    <script src="{% static 'js/crossfilter.js' %}"></script>
+    <script src="{% static 'js/dc.js' %}"></script>
+    <script type="text/javascript">
+        function render_plots() {
+            population
+                    .width(500)
+                    .height(150)
+                    .elasticX(true)
+                    .renderArea(false)
+                    .brushOn(false)
+                    .renderDataPoints(true)
+                    .margins({top: 30, right: 50, bottom: 25, left: 70})
+                    .x(d3.scale.linear().domain([2000, 2014]))
+                    .dimension(dimYear)
+                    .group(grpYear);
+
+            console.log('Rendering');
+            dc.renderAll();
+        }
+        var ndx;
+        var population = dc.lineChart("#population_timeseries");
+
+        /* Get data */
+        var data = {{ population|safe }};
+        console.log(data);
+        ndx = crossfilter(data);
+
+        /* Set dimension */
+        var dimYear = ndx.dimension(function (d) {
+            return d.year;
+        });
+
+        /* Set group */
+        var grpYear = dimYear.group().reduceSum(function (d) {
+            return d.value;
+        });
+
+        render_plots();
+
+    </script>
+{% endblock content %}

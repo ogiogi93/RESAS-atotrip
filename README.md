@@ -8,11 +8,3 @@
 ## Demo
 http://resas-atotrip.ogiogi93.com/
 
-## Requirement
-
-Python Version: anaconda-2-4.10 2.7.12
-
-## Usage
-<pre>
-python manage.py runserver [port(Default: 8000)]
-</pre>

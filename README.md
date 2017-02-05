@@ -1,5 +1,4 @@
 # 跡Trip
-====
 
 ## Description
 2017年2月4,5日に開催された「RESAS x Japan Hackathon 〜地域の連鎖をデザインしよう！〜」にて開発したサービス。<br>

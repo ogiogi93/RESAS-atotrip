@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
     <!-- NavBar-->
-    <nav class="navbar-default" role="navigation">
+    <nav class="navbar-default" role="navigation" xmlns="http://www.w3.org/1999/html">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#home">跡取りっぷ</a>
+                <a class="navbar-brand" href="#home">跡Trip</a>
             </div>
 
             <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
@@ -28,14 +28,14 @@
     <!-- FullScreen -->
     <div class="intro-header">
         <div class="col-xs-12 text-center abcen1">
-            <h1 class="h1_home wow fadeIn" data-wow-delay="0.4s">跡取りっぷ</h1>
-            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">跡取りを探している人と地方で輝きたい人を旅でつなぐサイト<br>
+            <h1 class="h1_home wow fadeIn" data-wow-delay="0.4s" style="color: #0b0b0b">跡Trip</h1>
+            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s" style="color: #0b0b0b">跡取りを探している人と地方で輝きたい人を旅でつなぐサイト<br>
                 魅力を伝えるお手伝いをする</h3>
             <ul class="list-inline intro-social-buttons">
                 <li id="download"><a href="#whatis"
                                      class="btn  btn-lg mybutton_standard wow swing wow fadeIn"
                                      data-wow-delay="1.2s"><span
-                        class="network-name">詳細を見てみる</span></a>
+                        class="network-name"><p style="color: #0b0b0b">>詳細を見てみる</p></span></a>
                 </li>
             </ul>
         </div>
@@ -89,4 +89,73 @@
             </div>
         </div>
     </div>
+    <div id="visualize" class="content-section-b" style="border-top: 0">
+        <div class="container">
+            <div class="row">
+                <div class='tableauPlaceholder' id='viz1486278997736' style='position: relative'>
+                    <noscript><a href='#'><img alt='ダッシュボード 1 '
+                                               src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ha&#47;hackason&#47;1_1&#47;1_rss.png'
+                                               style='border: none'/></a></noscript>
+                    <object class='tableauViz' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+                        <param name='site_root' value=''/>
+                        <param name='name' value='hackason&#47;1_1'/>
+                        <param name='tabs' value='no'/>
+                        <param name='toolbar' value='yes'/>
+                        <param name='static_image'
+                               value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ha&#47;hackason&#47;1_1&#47;1.png'/>
+                        <param name='animate_transition' value='yes'/>
+                        <param name='display_static_image' value='yes'/>
+                        <param name='display_spinner' value='yes'/>
+                        <param name='display_overlay' value='yes'/>
+                        <param name='display_count' value='yes'/>
+                    </object>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="system" class="content-section-b" style="border-top: 0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                    <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                        <h3>サービスの概要</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="text-align:center">
+                            <img src="/static/img/service.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="example" class="content-section-b" style="border-top: 0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                    <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+                        <h3>緊急課題</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="text-align:center">
+                            <img src="/static/img/gazo1.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript'>                    var divElement = document.getElementById('viz1486278997736');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    vizElement.style.width = '1004px';
+    vizElement.style.height = '869px';
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
 {% endblock content %}

@@ -16,7 +16,3 @@ Python Version: anaconda-2-4.10 2.7.12
 <pre>
 python manage.py runserver [port(Default: 8000)]
 </pre>
-
-## Author
-
-[ogiogi93](https://github.com/ogiogi93)

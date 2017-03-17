@@ -6,5 +6,3 @@
 ~ 魅力を伝えるお手伝いをする ~<br>
 
 ## Demo
-http://resas-atotrip.ogiogi93.com/
-
